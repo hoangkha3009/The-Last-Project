@@ -6,6 +6,8 @@ public class ButtonAnimationController : MonoBehaviour
     public Button button; // Tham chiếu đến Button UI
     public Animator bowlAnimator; // Tham chiếu đến Animator
     public string bowlAnimationStateName = "BowlAnimation"; // Tên của state trong Animator
+    public AudioSource audioSource; // Tham chiếu đến AudioSource
+    public AudioClip startSound; // Âm thanh phát khi animation bắt đầu
 
     private bool isAnimationPlaying = false; // Trạng thái kiểm tra animation đang chạy
 
@@ -21,8 +23,16 @@ public class ButtonAnimationController : MonoBehaviour
             isAnimationPlaying = true;
             button.interactable = false; // Khóa button
 
+<<<<<<<< Updated upstream:Assets/Code/BowlAnimation.cs
             // Kích hoạt logic random
             FindObjectOfType<OnClickEffect>().OnButtonClicked();
+========
+            // Phát âm thanh khi animation bắt đầu
+            if (audioSource != null && startSound != null)
+            {
+                audioSource.PlayOneShot(startSound);
+            }
+>>>>>>>> Stashed changes:Assets/script/BowlAnimation.cs
 
             // Phát trực tiếp animation bằng tên state
             bowlAnimator.Play(bowlAnimationStateName);
