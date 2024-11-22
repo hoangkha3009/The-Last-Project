@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ccf9ad0814f7952439db4b2b1da6c4f7
+guid: 0ecc850475dea57439c00b7b900f7dc1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4779020281638618576
-    second: "N\u1EAFp__0"
+      213: -418678913202170186
+    second: Dice2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "N\u1EAFp__0"
+      name: Dice2_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 5
-        width: 506
-        height: 501
+        x: 0
+        y: 0
+        width: 83
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03afa8acf528dadb0800000000000000
-      internalID: -4779020281638618576
+      spriteID: 6b653a72fbd803af0800000000000000
+      internalID: -418678913202170186
       vertices: []
       indices: 
       edges: []
