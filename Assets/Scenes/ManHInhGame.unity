@@ -633,11 +633,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!224 &370774297 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
-  m_PrefabInstance: {fileID: 6320865858957909224}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &379044767
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,7 +645,7 @@ GameObject:
   - component: {fileID: 379044770}
   - component: {fileID: 379044769}
   m_Layer: 5
-  m_Name: Dice1 (1)
+  m_Name: Dice3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -695,7 +690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3768092616001146148, guid: 6e6b2ee36c8f75b4f9a4df2e586a9993, type: 3}
+  m_Sprite: {fileID: -1796865340239105866, guid: 919ce89f76c71cb4aa38a56921e3f5e2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -725,7 +720,7 @@ GameObject:
   - component: {fileID: 385061503}
   - component: {fileID: 385061502}
   m_Layer: 5
-  m_Name: Dice1 (2)
+  m_Name: Dice2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -770,7 +765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4914447994457797886, guid: bd7a4fcfc2dde2c4d95ecaf1a75da89c, type: 3}
+  m_Sprite: {fileID: 3768092616001146148, guid: 6e6b2ee36c8f75b4f9a4df2e586a9993, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1798,9 +1793,9 @@ GameObject:
   - component: {fileID: 935295252}
   - component: {fileID: 935295251}
   - component: {fileID: 935295250}
-  - component: {fileID: 935295249}
   - component: {fileID: 935295254}
   - component: {fileID: 935295255}
+  - component: {fileID: 935295256}
   m_Layer: 5
   m_Name: "C\xE1i N\u1EAFp"
   m_TagString: Untagged
@@ -1808,23 +1803,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &935295249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935295248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd10513d49c2b9347816c079ffa62402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 976017600}
-  bowlAnimator: {fileID: 935295250}
-  bowlAnimationStateName: BowlAnimation
-  audioSource: {fileID: 0}
-  startSound: {fileID: 0}
 --- !u!95 &935295250
 Animator:
   serializedVersion: 7
@@ -1835,7 +1813,7 @@ Animator:
   m_GameObject: {fileID: 935295248}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b197c0839d5582e41af787193144f7a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5f842f4a4ea882047955e66b01458ba8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1901,7 +1879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4, y: 199.84132}
+  m_AnchoredPosition: {x: 1768, y: 199.84132}
   m_SizeDelta: {x: 1090.5352, y: 1059.0775}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &935295254
@@ -1931,6 +1909,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 935295250}
+--- !u!114 &935295256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935295248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8791a2ae6f97a7439f8e427af75d906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 935295250}
+  diceObjects:
+  - {fileID: 1512853412}
+  - {fileID: 385061500}
+  - {fileID: 379044767}
+  diceNames: []
 --- !u!1 &973222496
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,7 +2024,6 @@ RectTransform:
   - {fileID: 182736858}
   - {fileID: 2032744954}
   - {fileID: 1485486930}
-  - {fileID: 370774297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2117,7 +2112,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 976017601}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 935295256}
+        m_TargetAssemblyTypeName: DiceController, Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &976017601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2288,7 +2295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5900714689298254407, guid: 37c58fb4ed5b93d498fcf1391768f2f3, type: 3}
+  m_Sprite: {fileID: 5721097580668885017, guid: 09d3f38f3a20ae245bb5017fc6478981, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2363,7 +2370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3768092616001146148, guid: 6e6b2ee36c8f75b4f9a4df2e586a9993, type: 3}
+  m_Sprite: {fileID: 176160234808770350, guid: bd7a4fcfc2dde2c4d95ecaf1a75da89c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2513,7 +2520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4914447994457797886, guid: bd7a4fcfc2dde2c4d95ecaf1a75da89c, type: 3}
+  m_Sprite: {fileID: -3167277614115111231, guid: 37c58fb4ed5b93d498fcf1391768f2f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2780,7 +2787,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -5900714689298254407, guid: 37c58fb4ed5b93d498fcf1391768f2f3, type: 3}
+  m_Sprite: {fileID: -3167277614115111231, guid: 37c58fb4ed5b93d498fcf1391768f2f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3132,7 +3139,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 973222500}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_Pivot.x
@@ -3167,6 +3174,18 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8320349
+      objectReference: {fileID: 0}
+    - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8320349
+      objectReference: {fileID: 0}
+    - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8320349
+      objectReference: {fileID: 0}
+    - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3184,23 +3203,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 400
+      value: 968.2622
       objectReference: {fileID: 0}
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 1370.1349
       objectReference: {fileID: 0}
     - target: {fileID: 102044702460192260, guid: de4dc97c435ae854e8d038fd95c36967, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3365,7 +3384,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7059389892867067079, guid: 94880bbc728a77e42b0f458e2f0bb3a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059389892867067079, guid: 94880bbc728a77e42b0f458e2f0bb3a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059389892867067079, guid: 94880bbc728a77e42b0f458e2f0bb3a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059389892867067079, guid: 94880bbc728a77e42b0f458e2f0bb3a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DiceController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059389892867067079, guid: 94880bbc728a77e42b0f458e2f0bb3a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7553817608976056434, guid: 94880bbc728a77e42b0f458e2f0bb3a2, type: 3}
       propertyPath: lidObject
@@ -3383,5 +3418,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 268108410}
   - {fileID: 973222500}
+  - {fileID: 6320865858957909224}
   - {fileID: 196820684}
   - {fileID: 566450188}
