@@ -190,16 +190,59 @@ public class CaseData
    public static string GetFormulaDescription(int caseChoice, int a, int b, int c)
 {
     switch (caseChoice)
-    {
-        case 0:
-            return $"Công thức: (A + 2) % 6 => ({a} + 2) % 6 = {(a + 2) % 6}";
-        case 1:
-            return $"Công thức: (B + 2) % 6 => ({b} + 2) % 6 = {(b + 2) % 6}";
-        case 23:
-            return $"Công thức: (B + C + 2) % 6 => ({b} + {c} + 2) % 6 = {(b + c + 2) % 6}";
-        default:
-            return "Công thức không tồn tại.";
-    }
+{
+    case 0:
+        return "Công thức: A + 2\nThứ tự: Bau, Cua, Ca, Ga, Tom, Nai";
+    case 1:
+        return "Công thức: B + 2\nThứ tự: Ca, Nai, Ga, Bau, Tom, Cua";
+    case 2:
+        return "Công thức: A + B + 1\nThứ tự: Cua, Nai, Bau, Ca, Tom, Ga";
+    case 3:
+        return "Công thức: B + 1\nThứ tự: Cua, Ca, Ga, Tom, Nai, Bau";
+    case 4:
+        return "Công thức: A + B + 2\nThứ tự: Nai, Ca, Tom, Ga, Cua, Bau";
+    case 5:
+        return "Công thức: B + C + 2\nThứ tự: Tom, Cua, Bau, Ga, Nai, Ca";
+    case 6:
+        return "Công thức: C + 1\nThứ tự: Ca, Ga, Tom, Nai, Bau, Cua";
+    case 7:
+        return "Công thức: A + 1\nThứ tự: Tom, Nai, Bau, Cua, Ga, Ca";
+    case 8:
+        return "Công thức: A + C + 1\nThứ tự: Tom, Ca, Nai, Bau, Ga, Cua";
+    case 9:
+        return "Công thức: B + 2\nThứ tự: Tom, Nai, Bau, Cua, Ga, Ca";
+    case 10:
+        return "Công thức: B + C + 1\nThứ tự: Bau, Ga, Cua, Ca, Nai, Tom";
+    case 11:
+        return "Công thức: A + B + 2\nThứ tự: Bau, Tom, Ga, Cua, Nai, Ca";
+    case 12:
+        return "Công thức: A + 1\nThứ tự: Nai, Bau, Cua, Ca, Tom, Ga";
+    case 13:
+        return "Công thức: A + C + 2\nThứ tự: Ga, Nai, Ca, Tom, Bau, Cua";
+    case 14:
+        return "Công thức: B + C + 1\nThứ tự: Ga, Ca, Bau, Nai, Cua, Tom";
+    case 15:
+        return "Công thức: C + 1\nThứ tự: Ga, Tom, Nai, Bau, Cua, Ca";
+    case 16:
+        return "Công thức: B + 2\nThứ tự: Cua, Bau, Nai, Ga, Ca, Tom";
+    case 17:
+        return "Công thức: A + C + 2\nThứ tự: Ca, Tom, Ga, Nai, Bau, Cua";
+    case 18:
+        return "Công thức: A + 1\nThứ tự: Bau, Ga, Tom, Cua, Nai, Ca";
+    case 19:
+        return "Công thức: A + B + 2\nThứ tự: Tom, Ga, Ca, Nai, Bau, Cua";
+    case 20:
+        return "Công thức: A + B + 1\nThứ tự: Nai, Bau, Cua, Ca, Tom, Ga";
+    case 21:
+        return "Công thức: B + 1\nThứ tự: Cua, Tom, Nai, Ga, Bau, Ca";
+    case 22:
+        return "Công thức: C + 1\nThứ tự: Bau, Nai, Tom, Ca, Ga, Cua";
+    case 23:
+        return "Công thức: B + C + 2\nThứ tự: Tom, Nai, Ca, Ga, Cua, Bau";
+    default:
+        return "Công thức không tồn tại.";
+}
+
 }
 
 
