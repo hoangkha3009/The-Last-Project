@@ -26,7 +26,7 @@ public class ButtonWithEffect : MonoBehaviour
         yield return StartCoroutine(FadeOut());
 
         // Chuyển Scene sau khi hoàn thành Fade Out
-        StartCoroutine(LoadSceneWithFadeIn("AppBauCua"));
+        StartCoroutine(LoadSceneWithFadeIn("MenuGame"));
     }
 
     IEnumerator FadeOut()
@@ -81,10 +81,10 @@ public class ButtonWithEffect : MonoBehaviour
         }
     }
 
-    IEnumerator LoadSceneWithFadeIn(string AppBauCua)
+    IEnumerator LoadSceneWithFadeIn(string MenuGame)
     {
         // Tải Scene trong nền
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(AppBauCua);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(MenuGame);
         while (!asyncLoad.isDone)
         {
             yield return null;
