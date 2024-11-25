@@ -1,14 +1,16 @@
-using UnityEngine;
 using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DiceController : MonoBehaviour
 {
-    public Animator animator; // Animator cho "Cái Nắp"
     public GameObject[] diceObjects; // Các đối tượng xúc xắc (UI Image)
     public string[] diceNames; // Tên biểu tượng xúc xắc
     private int nextDice = -1; // Giá trị Next Dice (ban đầu là -1 để kiểm tra)
     private int currentCase; // Case hiện tại
+	public Image resultImage1; // UI Image cho Dice 1
+    public Image resultImage2; // UI Image cho Dice 2
+    public Image resultImage3; // UI Image cho Dice 3
 
     void Start()
     {
@@ -27,46 +29,46 @@ public class DiceController : MonoBehaviour
         diceNames = CaseData.Cases[currentCase].Item1;
     }
 
-    public void PlayAnimation()
-    {
-        // Kích hoạt Trigger để chạy Animation
-        animator.SetTrigger("PlayAnimation");
-    }
-
     public void TriggerDiceRoll()
+{
+    // Đặt giá trị xúc xắc ngẫu nhiên
+    int[] diceResults = new int[3];
+    for (int i = 0; i < 3; i++)
     {
-        // Đặt giá trị xúc xắc ngẫu nhiên
-        int[] diceResults = new int[3];
-        for (int i = 0; i < 3; i++)
-        {
-            diceResults[i] = UnityEngine.Random.Range(0, 6);
-        }
-
-        // Gán Next Dice vào một trong các xúc xắc (nếu có)
-        if (nextDice != -1)
-        {
-            int guaranteedIndex = UnityEngine.Random.Range(0, 3);
-            diceResults[guaranteedIndex] = nextDice;
-        }
-
-        // Hiển thị kết quả xúc xắc lên giao diện
-        for (int i = 0; i < diceObjects.Length; i++)
-        {
-            Image diceImage = diceObjects[i].GetComponent<Image>();
-            if (diceImage != null)
-            {
-                diceImage.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[i]]}");
-            }
-        }
-
-        // Debug thông tin xúc xắc đã roll
-        Debug.Log($"Dice Results: {diceResults[0]} ({diceNames[diceResults[0]]}), " +
-                  $"{diceResults[1]} ({diceNames[diceResults[1]]}), " +
-                  $"{diceResults[2]} ({diceNames[diceResults[2]]})");
-
-        // Tính toán Next Dice mới
-        CalculateNextDice(diceResults);
+        diceResults[i] = UnityEngine.Random.Range(0, 6);
     }
+
+    // Gán Next Dice vào một trong các xúc xắc (nếu có)
+    if (nextDice != -1)
+    {
+        int guaranteedIndex = UnityEngine.Random.Range(0, 3);
+        diceResults[guaranteedIndex] = nextDice;
+    }
+
+    // Hiển thị kết quả xúc xắc lên giao diện Dice UI
+    for (int i = 0; i < diceObjects.Length; i++)
+    {
+        Image diceImage = diceObjects[i].GetComponent<Image>();
+        if (diceImage != null)
+        {
+            diceImage.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[i]]}");
+        }
+    }
+
+    // Hiển thị kết quả lên các Image UI được chỉ định (Dice1, Dice2, Dice3)
+    resultImage1.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[0]]}");
+    resultImage2.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[1]]}");
+    resultImage3.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[2]]}");
+
+    // Debug thông tin xúc xắc đã roll
+    Debug.Log($"Dice Results: {diceResults[0]} ({diceNames[diceResults[0]]}), " +
+              $"{diceResults[1]} ({diceNames[diceResults[1]]}), " +
+              $"{diceResults[2]} ({diceNames[diceResults[2]]})");
+
+    // Tính toán Next Dice mới
+    CalculateNextDice(diceResults);
+}
+
 
     private void CalculateNextDice(int[] diceResults)
     {
