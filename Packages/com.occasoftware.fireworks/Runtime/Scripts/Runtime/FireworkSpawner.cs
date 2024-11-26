@@ -8,8 +8,8 @@ namespace OccaSoftware.Fireworks.Runtime
     {
         public List<GameObject> visualEffects = new List<GameObject>();
 
-        public float spawnRadius = 20f;
-        public float spawnRate = 2f;
+        public float spawnRadius = 1f;
+        public float spawnRate = 1f;
 
         float randomizedRate;
         float timeTracker;
@@ -17,7 +17,7 @@ namespace OccaSoftware.Fireworks.Runtime
         void Start()
         {
             timeTracker = Time.time;
-            randomizedRate = spawnRate * Random.Range(1f, 2f);
+            randomizedRate = spawnRate * Random.Range(1f, 1f);
         }
 
         void Update()
@@ -26,7 +26,7 @@ namespace OccaSoftware.Fireworks.Runtime
             {
                 Spawn();
                 timeTracker = Time.time;
-                randomizedRate = spawnRate * Random.Range(1f, 2f);
+                randomizedRate = spawnRate * Random.Range(1f, 1f);
             }
         }
 
