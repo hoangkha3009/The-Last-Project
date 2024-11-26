@@ -462,9 +462,9 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.81666666
-        value: {x: 0.765, y: 0.887, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
+        value: {x: 0.76555, y: 0.88705, z: 1}
+        inSlope: {x: 0, y: -0.000021466309, z: 0}
+        outSlope: {x: 0, y: -0.000021466309, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -3096,7 +3096,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.81666666
-        value: 0.765
+        value: 0.76555
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3612,9 +3612,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.81666666
-        value: 0.887
-        inSlope: 0
-        outSlope: 0
+        value: 0.88705
+        inSlope: -0.000021466309
+        outSlope: -0.000021466309
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -4208,8 +4208,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.81666666
+  - time: 0.8
     functionName: PauseAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.81666666
+    functionName: ResumeAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -4217,20 +4224,6 @@ AnimationClip:
     messageOptions: 0
   - time: 0.8333333
     functionName: TriggerDiceRoll
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.85
-    functionName: ResumeAnimation
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.8666667
-    functionName: Spawn
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -12,6 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuGame.unity
     guid: 356520823c03a834384fa619dcdc2ec1
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 5307113986d3be6498060a9203326a1a, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 03540eb1f8612824fbf887849b3571a1, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 01cc0f3c3a63e884bbe162d8a822700f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
