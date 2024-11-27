@@ -4,8 +4,8 @@ using System;
 
 public class DisplayCaseByTime : MonoBehaviour
 {
-    public TMP_Text caseText; // Text Mesh để hiển thị mã và mô tả
-    public TMP_Text codeText;
+    public TMP_Text caseText; // Text để hiển thị mã và mô tả
+    public TMP_Text codeText; // Text để hiển thị mã code riêng
 
     void Start()
     {
@@ -19,37 +19,40 @@ public class DisplayCaseByTime : MonoBehaviour
         // Kiểm tra kết nối mạng
         bool isConnected = Application.internetReachability != NetworkReachability.NotReachable;
 
-        // Lấy mã và mô tả của caseIndex
-        if (CaseData.Cases.ContainsKey(caseIndex))
-        {
-            var (code, description) = CaseData.GetCaseCodeAndDescription(caseIndex);
+        string code, description;
 
-            // Hiển thị thông tin case lên TextMeshPro dựa trên trạng thái mạng
+        if (isConnected)
+        {
+            // Cập nhật giá trị ngẫu nhiên cho caseIndex
+            CaseData.UpdateCaseWithRandomValues(caseIndex);
+
+            // Lấy mã và mô tả từ caseIndex sau khi cập nhật
+            (code, description) = CaseData.GetCaseCodeAndDescription(caseIndex);
+
+            // Hiển thị "code:description" khi có mạng
             if (caseText != null)
             {
-                if (isConnected)
-                {
-                    caseText.text = $"{code}:{description}";
-                }
-                else
-                {
-                    caseText.text = $"{code}.{description}";
-                }
-            }
-
-            if (codeText != null)
-            {
-                codeText.text = $"{code}"; // Code luôn hiển thị
+                caseText.text = $"{code}:{description}";
             }
         }
         else
         {
-            // Nếu caseIndex không tồn tại, thông báo lỗi
-            Debug.LogError($"CaseIndex {caseIndex} không tồn tại trong CaseData!");
+            // Lấy giá trị hiện tại (không cập nhật ngẫu nhiên)
+            var currentCase = CaseData.Cases[caseIndex];
+            code = currentCase.Item3; // Lấy mã mặc định
+            description = currentCase.Item4; // Lấy mô tả mặc định
+
+            // Hiển thị "code.description" khi không có mạng
             if (caseText != null)
             {
-                caseText.text = $"Case {caseIndex} không tồn tại!";
+                caseText.text = $"{code}.{description}";
             }
+        }
+
+        // Luôn hiển thị mã code
+        if (codeText != null)
+        {
+            codeText.text = $"{code}";
         }
     }
 }

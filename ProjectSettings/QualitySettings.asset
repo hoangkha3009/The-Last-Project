@@ -57,9 +57,12 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - WebGL
+    - Standalone
+    - Android
   - serializedVersion: 4
-    name: Low
+    name: Medium
     pixelLightCount: 0
     shadows: 0
     shadowResolution: 0
@@ -82,7 +85,7 @@ QualitySettings:
     useLegacyDetailDistribution: 1
     adaptiveVsync: 0
     vSyncCount: 0
-    realtimeGICPUUsage: 25
+    realtimeGICPUUsage: 50
     adaptiveVsyncExtraA: 0
     adaptiveVsyncExtraB: 0
     lodBias: 0.4
@@ -109,7 +112,10 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - WebGL
+    - Standalone
+    - Android
   - serializedVersion: 4
     name: Medium
     pixelLightCount: 1
@@ -161,7 +167,9 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - WebGL
+    - Standalone
   - serializedVersion: 4
     name: High
     pixelLightCount: 2
@@ -213,7 +221,10 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - WebGL
+    - Standalone
+    - Android
   - serializedVersion: 4
     name: Very High
     pixelLightCount: 3
@@ -265,7 +276,10 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - WebGL
+    - Standalone
+    - Android
   - serializedVersion: 4
     name: Ultra
     pixelLightCount: 4
@@ -317,7 +331,10 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms: []
+    excludedTargetPlatforms:
+    - WebGL
+    - Standalone
+    - Android
   m_TextureMipmapLimitGroupNames: []
   m_PerPlatformDefaultQuality:
     Android: 2

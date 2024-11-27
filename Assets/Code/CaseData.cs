@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class CaseData
 {
@@ -184,6 +185,42 @@ public class CaseData
             return (caseData.Item3, caseData.Item4);
         }
         return ("Unknown", "Case not found.");
+    }
+	public static void UpdateCaseWithRandomValues(int caseIndex)
+    {
+        if (Cases.ContainsKey(caseIndex))
+        {
+            var currentCase = Cases[caseIndex];
+
+            // Tạo giá trị ngẫu nhiên cho Item3 và Item4
+            string randomItem3 = GenerateRandomNumbers();
+            string randomItem4 = GenerateRandomLetters();
+
+            // Cập nhật lại case
+            Cases[caseIndex] = (
+                currentCase.Item1, // Danh sách biểu tượng
+                currentCase.Item2, // Logic
+                randomItem3,       // Item3
+                randomItem4        // Item4
+            );
+        }
+        else
+        {
+            Debug.LogError($"CaseIndex {caseIndex} không tồn tại trong CaseData!");
+        }
+    }
+
+    private static string GenerateRandomNumbers()
+    {
+        System.Random rand = new System.Random();
+        return $"{rand.Next(0, 10)}{rand.Next(0, 10)}{rand.Next(0, 10)}";
+    }
+
+    private static string GenerateRandomLetters()
+    {
+        System.Random rand = new System.Random();
+        char RandomLetter() => (char)rand.Next('A', 'Z' + 1);
+        return $"{RandomLetter()}{RandomLetter()}{RandomLetter()}";
     }
 
 
