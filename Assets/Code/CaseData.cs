@@ -187,27 +187,27 @@ public class CaseData
         return ("Unknown", "Case not found.");
     }
 	public static void UpdateCaseWithRandomValues(int caseIndex)
+{
+    if (Cases.ContainsKey(caseIndex))
     {
-        if (Cases.ContainsKey(caseIndex))
-        {
-            var currentCase = Cases[caseIndex];
+        var currentCase = Cases[caseIndex];
 
-            // Tạo giá trị ngẫu nhiên cho Item3 và Item4
-            string randomItem3 = GenerateRandomNumbers();
-            string randomItem4 = GenerateRandomLetters();
+        // Tạo giá trị ngẫu nhiên cho Item3 và Item4
+        string randomItem3 = GenerateRandomNumbers();
+        string randomItem4 = GenerateRandomLetters();
 
-            // Cập nhật lại case
-            Cases[caseIndex] = (
-                currentCase.Item1, // Danh sách biểu tượng
-                currentCase.Item2, // Logic
-                randomItem3,       // Item3
-                randomItem4        // Item4
-            );
-        }
-        else
-        {
-            Debug.LogError($"CaseIndex {caseIndex} không tồn tại trong CaseData!");
-        }
+        // Cập nhật lại case
+        Cases[caseIndex] = (
+            currentCase.Item1, // Danh sách biểu tượng
+            currentCase.Item2, // Logic
+            randomItem3,       // Item3 (Số ngẫu nhiên)
+            randomItem4        // Item4 (Chữ ngẫu nhiên)
+        );
+    }
+    else
+    {
+        Debug.LogError($"CaseIndex {caseIndex} không tồn tại trong CaseData!");
+    }
     }
 
     private static string GenerateRandomNumbers()
