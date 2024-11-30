@@ -1997,6 +1997,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.5
+    functionName: TriggerDiceRoll
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.5833334
     functionName: PauseAnimation
     data: 
@@ -2006,13 +2013,6 @@ AnimationClip:
     messageOptions: 0
   - time: 1.6166667
     functionName: ResumeAnimation
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.6333333
-    functionName: TriggerDiceRoll
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
