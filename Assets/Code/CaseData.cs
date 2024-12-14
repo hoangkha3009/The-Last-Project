@@ -9,173 +9,176 @@ public class CaseData
 
     public static void LoadCases()
     {
-        Cases[0] = (
-            new string[] { "Bau", "Cua", "Ca", "Ga", "Tom", "Nai" },
-            (a, b, c) => (a + 2) % 6, // Next_dice= (A + 2) % 6
-            "234",
-            "DEF"
-        );
+       Cases[0] = (
+    new string[] { "Ca", "Bau", "Ga", "Nai", "Tom", "Cua" },
+    (a, b, c) => (b + 2) % 6, // Next_dice= (B + 2) % 6
+    "8A1",
+    "XYZ"
+);
 
-        Cases[1] = (
-            new string[] { "Ca", "Nai", "Ga", "Bau", "Tom", "Cua" },
-            (a, b, c) => (b + 2) % 6, // Next_dice= (B + 2) % 6
-            "345",
-            "EFG"
-        );
+Cases[1] = (
+    new string[] { "Tom", "Ca", "Nai", "Cua", "Bau", "Ga" },
+    (a, b, c) => (a + b + 2) % 6, // Next_dice= (A + B + 2) % 6
+    "6B5",
+    "PQR"
+);
 
-        Cases[2] = (
-            new string[] { "Cua", "Nai", "Bau", "Ca", "Tom", "Ga" },
-            (a, b, c) => (a + b + 1) % 6, // Next_dice= (A + B + 1) % 6
-            "456",
-            "FGH"
-        );
-		Cases[3] = (
-            new string[] { "Cua", "Ca", "Ga", "Tom", "Nai", "Bau" },
-            (a, b, c) => (b + 1) % 6, // Next_dice= (B + 1) % 6
-            "567",
-            "GHI"
-        );
+Cases[2] = (
+    new string[] { "Nai", "Tom", "Bau", "Ca", "Cua", "Ga" },
+    (a, b, c) => (a + b + 1) % 6, // Next_dice= (A + B + 1) % 6
+    "3C5",
+    "EFG"
+);
 
-        Cases[4] = (
-            new string[] { "Nai", "Ca", "Tom", "Ga", "Cua", "Bau" },
-            (a, b, c) => (a + b + 2) % 6, // Next_dice= (A + B + 2) % 6
-            "678",
-            "HIJ"
-        );
+Cases[3] = (
+    new string[] { "Nai", "Cua", "Ca", "Tom", "Bau", "Ga" },
+    (a, b, c) => (b + 1) % 6, // Next_dice= (B + 1) % 6
+    "1D4",
+    "ABC"
+);
 
-        Cases[5] = (
-            new string[] { "Tom", "Cua", "Bau", "Ga", "Nai", "Ca" },
-            (a, b, c) => (b + c + 2) % 6, // Next_dice= (B + C + 2) % 6
-            "789",
-            "IJK"
-        );
+Cases[4] = (
+    new string[] { "Ga", "Ca", "Nai", "Tom", "Bau", "Cua" },
+    (a, b, c) => (a + 1) % 6, // Next_dice= (A + 1) % 6
+    "2E1",
+    "LMN"
+);
 
-        Cases[6] = (
-            new string[] { "Ca", "Ga", "Tom", "Nai", "Bau", "Cua" },
-            (a, b, c) => (c + 1) % 6, // Next_dice= (C + 1) % 6
-            "890",
-            "JKL"
-        );
+Cases[5] = (
+    new string[] { "Cua", "Bau", "Ga", "Tom", "Ca", "Nai" },
+    (a, b, c) => (c + 1) % 6, // Next_dice= (C + 1) % 6
+    "5F7",
+    "UVW"
+);
 
-        Cases[7] = (
-            new string[] { "Tom", "Nai", "Bau", "Cua", "Ga", "Ca" },
-            (a, b, c) => (a + 1) % 6, // Next_dice= (A + 1) % 6
-            "901",
-            "KLM"
-        );
+Cases[6] = (
+    new string[] { "Tom", "Ga", "Nai", "Ca", "Bau", "Cua" },
+    (a, b, c) => (b + 2) % 6, // Next_dice= (B + 2) % 6
+    "3G9",
+    "HIJ"
+);
 
-        Cases[8] = (
-            new string[] { "Tom", "Ca", "Nai", "Bau", "Ga", "Cua" },
-            (a, b, c) => (a + c + 1) % 6, // Next_dice= (A + C + 1) % 6
-            "012",
-            "LMN"
-        );
+Cases[7] = (
+    new string[] { "Nai", "Ga", "Ca", "Cua", "Bau", "Tom" },
+    (a, b, c) => (a + c + 1) % 6, // Next_dice= (A + C + 1) % 6
+    "7H2",
+    "TUV"
+);
 
-        Cases[9] = (
-            new string[] { "Tom", "Nai", "Bau", "Cua", "Ga", "Ca" },
-            (a, b, c) => (b + 2) % 6, // Next_dice= (B + 2) % 6
-            "123",
-            "MNO"
-        );
+Cases[8] = (
+    new string[] { "Cua", "Ga", "Ca", "Tom", "Nai", "Bau" },
+    (a, b, c) => (a + b + 2) % 6, // Next_dice= (A + B + 2) % 6
+    "6I4",
+    "JKL"
+);
 
-        Cases[10] = (
-            new string[] { "Bau", "Ga", "Cua", "Ca", "Nai", "Tom" },
-            (a, b, c) => (b + c + 1) % 6, // Next_dice= (B + C + 1) % 6
-            "234",
-            "NOP"
-        );
+Cases[9] = (
+    new string[] { "Cua", "Tom", "Ga", "Ca", "Nai", "Bau" },
+    (a, b, c) => (a + c + 2) % 6, // Next_dice= (A + C + 2) % 6
+    "4J8",
+    "RST"
+);
 
-        Cases[11] = (
-            new string[] { "Bau", "Tom", "Ga", "Cua", "Nai", "Ca" },
-            (a, b, c) => (a + b + 2) % 6, // Next_dice= (A + B + 2) % 6
-            "345",
-            "OPQ"
-        );
+Cases[10] = (
+    new string[] { "Ga", "Ca", "Cua", "Nai", "Tom", "Bau" },
+    (a, b, c) => (b + c + 1) % 6, // Next_dice= (B + C + 1) % 6
+    "3K8",
+    "OPQ"
+);
 
-        Cases[12] = (
-            new string[] { "Nai", "Bau", "Cua", "Ca", "Tom", "Ga" },
-            (a, b, c) => (a + 1) % 6, // Next_dice= (A + 1) % 6
-            "456",
-            "PQR"
-        );
+Cases[11] = (
+    new string[] { "Ga", "Tom", "Ca", "Cua", "Bau", "Nai" },
+    (a, b, c) => (b + c + 1) % 6, // Next_dice= (B + C + 1) % 6
+    "5L3",
+    "DEF"
+);
 
-        Cases[13] = (
-            new string[] { "Ga", "Nai", "Ca", "Tom", "Bau", "Cua" },
-            (a, b, c) => (a + c + 2) % 6, // Next_dice= (A + C + 2) % 6
-            "567",
-            "QRS"
-        );
+Cases[12] = (
+    new string[] { "Ca", "Bau", "Tom", "Ga", "Cua", "Nai" },
+    (a, b, c) => (b + c + 2) % 6, // Next_dice= (B + C + 2) % 6
+    "5M6",
+    "FGH"
+);
 
-        Cases[14] = (
-            new string[] { "Ga", "Ca", "Bau", "Nai", "Cua", "Tom" },
-            (a, b, c) => (b + c + 1) % 6, // Next_dice= (B + C + 1) % 6
-            "678",
-            "RST"
-        );
+Cases[13] = (
+    new string[] { "Ca", "Bau", "Nai", "Tom", "Cua", "Ga" },
+    (a, b, c) => (a + b + 1) % 6, // Next_dice= (A + B + 1) % 6
+    "1N3",
+    "KLM"
+);
 
-        Cases[15] = (
-            new string[] { "Ga", "Tom", "Nai", "Bau", "Cua", "Ca" },
-            (a, b, c) => (c + 1) % 6, // Next_dice= (C + 1) % 6
-            "789",
-            "STU"
-        );
+Cases[14] = (
+    new string[] { "Cua", "Ca", "Bau", "Nai", "Tom", "Ga" },
+    (a, b, c) => (c + 1) % 6, // Next_dice= (C + 1) % 6
+    "5O1",
+    "YZA"
+);
 
-        Cases[16] = (
-            new string[] { "Cua", "Bau", "Nai", "Ga", "Ca", "Tom" },
-            (a, b, c) => (b + 2) % 6, // Next_dice= (B + 2) % 6
-            "890",
-            "TUV"
-        );
+Cases[15] = (
+    new string[] { "Cua", "Tom", "Ga", "Nai", "Ca", "Bau" },
+    (a, b, c) => (b + 2) % 6, // Next_dice= (B + 2) % 6
+    "2P7",
+    "WXY"
+);
 
-        Cases[17] = (
-            new string[] { "Ca", "Tom", "Ga", "Nai", "Bau", "Cua" },
-            (a, b, c) => (a + c + 2) % 6, // Next_dice= (A + C + 2) % 6
-            "901",
-            "UVW"
-        );
+Cases[16] = (
+    new string[] { "Ga", "Cua", "Nai", "Bau", "Tom", "Ca" },
+    (a, b, c) => (b + c + 2) % 6, // Next_dice= (B + C + 2) % 6
+    "9Q8",
+    "NOP"
+);
 
-        Cases[18] = (
-            new string[] { "Bau", "Ga", "Tom", "Cua", "Nai", "Ca" },
-            (a, b, c) => (a + 1) % 6, // Next_dice= (A + 1) % 6
-            "012",
-            "VWX"
-        );
+Cases[17] = (
+    new string[] { "Nai", "Cua", "Ca", "Tom", "Ga", "Bau" },
+    (a, b, c) => (a + c + 2) % 6, // Next_dice= (A + C + 2) % 6
+    "7R0",
+    "GHI"
+);
 
-        Cases[19] = (
-            new string[] { "Tom", "Ga", "Ca", "Nai", "Bau", "Cua" },
-            (a, b, c) => (a + b + 2) % 6, // Next_dice= (A + B + 2) % 6
-            "123",
-            "WXY"
-        );
+Cases[18] = (
+    new string[] { "Tom", "Ga", "Cua", "Ca", "Nai", "Bau" },
+    (a, b, c) => (b + 1) % 6, // Next_dice= (B + 1) % 6
+    "4S9",
+    "STU"
+);
 
-        Cases[20] = (
-            new string[] { "Nai", "Bau", "Cua", "Ca", "Tom", "Ga" },
-            (a, b, c) => (a + b + 1) % 6, // Next_dice= (A + B + 1) % 6
-            "234",
-            "XYZ"
-        );
+Cases[19] = (
+    new string[] { "Nai", "Ga", "Cua", "Tom", "Bau", "Ca" },
+    (a, b, c) => (a + 1) % 6, // Next_dice= (A + 1) % 6
+    "8T7",
+    "ZAB"
+);
 
-        Cases[21] = (
-            new string[] { "Cua", "Tom", "Nai", "Ga", "Bau", "Ca" },
-            (a, b, c) => (b + 1) % 6, // Next_dice= (B + 1) % 6
-            "345",
-            "YZA"
-        );
+Cases[20] = (
+    new string[] { "Ca", "Cua", "Tom", "Ga", "Nai", "Bau" },
+    (a, b, c) => (a + 2) % 6, // Next_dice= (A + 2) % 6
+    "6U0",
+    "ABC"
+);
 
-        Cases[22] = (
-            new string[] { "Bau", "Nai", "Tom", "Ca", "Ga", "Cua" },
-            (a, b, c) => (c + 1) % 6, // Next_dice= (C + 1) % 6
-            "456",
-            "ZAB"
-        );
+Cases[21] = (
+    new string[] { "Ga", "Nai", "Tom", "Cua", "Bau", "Ca" },
+    (a, b, c) => (c + 1) % 6, // Next_dice= (C + 1) % 6
+    "2V9",
+    "PQR"
+);
 
-        // Các case khác giữ nguyên...
-        Cases[23] = (
-            new string[] { "Tom", "Nai", "Ca", "Ga", "Cua", "Bau" },
-            (a, b, c) => (b + c + 2) % 6, // Next_dice= (B + C + 2) % 6
-            "567",
-            "ABC"
-        );
+Cases[22] = (
+    new string[] { "Tom", "Ca", "Bau", "Ga", "Nai", "Cua" },
+    (a, b, c) => (a + b + 2) % 6, // Next_dice= (A + B + 2) % 6
+    "3W0",
+    "EFG"
+);
+
+Cases[23] = (
+    new string[] { "Tom", "Nai", "Ca", "Ga", "Cua", "Bau" },
+    (a, b, c) => (a + c + 2) % 6, // Next_dice= (A + C + 2) % 6
+    "1X7",
+    "RST"
+);
+
+
+
     }
 	public static (string code, string description) GetCaseCodeAndDescription(int caseChoice)
     {
@@ -228,56 +231,57 @@ public class CaseData
 {
     switch (caseChoice)
 {
-    case 0:
-        return "Công thức: A + 2\nThứ tự: Bau, Cua, Ca, Ga, Tom, Nai";
-    case 1:
-        return "Công thức: B + 2\nThứ tự: Ca, Nai, Ga, Bau, Tom, Cua";
-    case 2:
-        return "Công thức: A + B + 1\nThứ tự: Cua, Nai, Bau, Ca, Tom, Ga";
-    case 3:
-        return "Công thức: B + 1\nThứ tự: Cua, Ca, Ga, Tom, Nai, Bau";
-    case 4:
-        return "Công thức: A + B + 2\nThứ tự: Nai, Ca, Tom, Ga, Cua, Bau";
-    case 5:
-        return "Công thức: B + C + 2\nThứ tự: Tom, Cua, Bau, Ga, Nai, Ca";
-    case 6:
-        return "Công thức: C + 1\nThứ tự: Ca, Ga, Tom, Nai, Bau, Cua";
-    case 7:
-        return "Công thức: A + 1\nThứ tự: Tom, Nai, Bau, Cua, Ga, Ca";
-    case 8:
-        return "Công thức: A + C + 1\nThứ tự: Tom, Ca, Nai, Bau, Ga, Cua";
-    case 9:
-        return "Công thức: B + 2\nThứ tự: Tom, Nai, Bau, Cua, Ga, Ca";
-    case 10:
-        return "Công thức: B + C + 1\nThứ tự: Bau, Ga, Cua, Ca, Nai, Tom";
-    case 11:
-        return "Công thức: A + B + 2\nThứ tự: Bau, Tom, Ga, Cua, Nai, Ca";
-    case 12:
-        return "Công thức: A + 1\nThứ tự: Nai, Bau, Cua, Ca, Tom, Ga";
-    case 13:
-        return "Công thức: A + C + 2\nThứ tự: Ga, Nai, Ca, Tom, Bau, Cua";
-    case 14:
-        return "Công thức: B + C + 1\nThứ tự: Ga, Ca, Bau, Nai, Cua, Tom";
-    case 15:
-        return "Công thức: C + 1\nThứ tự: Ga, Tom, Nai, Bau, Cua, Ca";
-    case 16:
-        return "Công thức: B + 2\nThứ tự: Cua, Bau, Nai, Ga, Ca, Tom";
-    case 17:
-        return "Công thức: A + C + 2\nThứ tự: Ca, Tom, Ga, Nai, Bau, Cua";
-    case 18:
-        return "Công thức: A + 1\nThứ tự: Bau, Ga, Tom, Cua, Nai, Ca";
-    case 19:
-        return "Công thức: A + B + 2\nThứ tự: Tom, Ga, Ca, Nai, Bau, Cua";
-    case 20:
-        return "Công thức: A + B + 1\nThứ tự: Nai, Bau, Cua, Ca, Tom, Ga";
-    case 21:
-        return "Công thức: B + 1\nThứ tự: Cua, Tom, Nai, Ga, Bau, Ca";
-    case 22:
-        return "Công thức: C + 1\nThứ tự: Bau, Nai, Tom, Ca, Ga, Cua";
-    case 23:
-        return "Công thức: B + C + 2\nThứ tự: Tom, Nai, Ca, Ga, Cua, Bau";
-    default:
-        return "Công thức không tồn tại.";
+ case 0:
+    return "Công thức: B + 2\nThứ tự: Ca, Bau, Ga, Nai, Tom, Cua";
+case 1:
+    return "Công thức: A + B + 2\nThứ tự: Tom, Ca, Nai, Cua, Bau, Ga";
+case 2:
+    return "Công thức: A + B + 1\nThứ tự: Nai, Tom, Bau, Ca, Cua, Ga";
+case 3:
+    return "Công thức: B + 1\nThứ tự: Nai, Cua, Ca, Tom, Bau, Ga";
+case 4:
+    return "Công thức: A + 1\nThứ tự: Ga, Ca, Nai, Tom, Bau, Cua";
+case 5:
+    return "Công thức: C + 1\nThứ tự: Cua, Bau, Ga, Tom, Ca, Nai";
+case 6:
+    return "Công thức: B + 2\nThứ tự: Tom, Ga, Nai, Ca, Bau, Cua";
+case 7:
+    return "Công thức: A + C + 1\nThứ tự: Nai, Ga, Ca, Cua, Bau, Tom";
+case 8:
+    return "Công thức: A + B + 2\nThứ tự: Cua, Ga, Ca, Tom, Nai, Bau";
+case 9:
+    return "Công thức: A + C + 2\nThứ tự: Cua, Tom, Ga, Ca, Nai, Bau";
+case 10:
+    return "Công thức: B + C + 1\nThứ tự: Ga, Ca, Cua, Nai, Tom, Bau";
+case 11:
+    return "Công thức: B + C + 1\nThứ tự: Ga, Tom, Ca, Cua, Bau, Nai";
+case 12:
+    return "Công thức: B + C + 2\nThứ tự: Nai, Bau, Cua, Ca, Tom, Ga";
+case 13:
+    return "Công thức: A + B + 1\nThứ tự: Ga, Nai, Ca, Tom, Bau, Cua";
+case 14:
+    return "Công thức: C + 1\nThứ tự: Cua, Ca, Bau, Nai, Tom, Ga";
+case 15:
+    return "Công thức: B + 2\nThứ tự: Ga, Tom, Nai, Bau, Cua, Ca";
+case 16:
+    return "Công thức: B + C + 2\nThứ tự: Ga, Nai, Bau, Ca, Tom, Cua";
+case 17:
+    return "Công thức: A + C + 2\nThứ tự: Nai, Cua, Ca, Tom, Ga, Bau";
+case 18:
+    return "Công thức: B + 1\nThứ tự: Bau, Ga, Tom, Cua, Nai, Ca";
+case 19:
+    return "Công thức: A + 1\nThứ tự: Ga, Nai, Ca, Tom, Bau, Cua";
+case 20:
+    return "Công thức: A + 2\nThứ tự: Nai, Bau, Cua, Ca, Tom, Ga";
+case 21:
+    return "Công thức: C + 1\nThứ tự: Cua, Tom, Nai, Ga, Bau, Ca";
+case 22:
+    return "Công thức: A + B + 2\nThứ tự: Bau, Nai, Tom, Ca, Ga, Cua";
+case 23:
+    return "Công thức: A + C + 2\nThứ tự: Tom, Nai, Ca, Ga, Cua, Bau";
+default:
+    return "Công thức không tồn tại.";
+
 }
 
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using System.Collections.Generic;  // Đảm bảo có namespace này nếu bạn dùng List
 
 public class DisplayCaseOffline : MonoBehaviour
 {
@@ -15,10 +16,6 @@ public class DisplayCaseOffline : MonoBehaviour
         if (offlineCaseText != null) offlineCaseText.gameObject.SetActive(false);
         if (offlineCodeText != null) offlineCodeText.gameObject.SetActive(false);
 
-        // Lấy giờ hiện tại để xác định caseIndex
-        int currentHour = DateTime.Now.Hour; // Giờ hiện tại (0-23)
-        caseIndex = currentHour % CaseData.Cases.Count; // Chỉ số case (vòng lặp nếu lớn hơn số lượng cases)
-
         // Load các case từ CaseData
         CaseData.LoadCases();
 
@@ -26,18 +23,38 @@ public class DisplayCaseOffline : MonoBehaviour
         UpdateDisplay();
     }
 
+    void Update()
+    {
+        // Tính lại caseIndex mỗi lần trong vòng lặp cập nhật
+        int currentHour = DateTime.Now.Hour;
+        // Nếu CaseData.Cases không rỗng, tính toán chỉ số caseIndex
+        if (CaseData.Cases.Count > 0)
+        {
+            caseIndex = currentHour % CaseData.Cases.Count; // Tính lại caseIndex theo giờ hiện tại
+        }
+
+        // Cập nhật lại giao diện sau khi tính toán caseIndex mới
+        UpdateDisplay();
+    }
+
     void UpdateDisplay()
     {
         string code = "", description = "";
 
-        // Tính lại caseIndex theo giờ hiện tại
-        int currentHour = DateTime.Now.Hour;
-        caseIndex = currentHour % CaseData.Cases.Count;
-
-        // Lấy lại giá trị mặc định từ CaseData khi không có mạng
-        var currentCase = CaseData.Cases[caseIndex];
-        code = currentCase.Item3;  // Lấy mã mặc định từ gốc
-        description = currentCase.Item4;  // Lấy mô tả mặc định từ gốc
+        // Kiểm tra xem CaseData.Cases có dữ liệu hay không trước khi truy cập
+        if (CaseData.Cases.Count > 0)
+        {
+            // Lấy giá trị case từ CaseData
+            var currentCase = CaseData.Cases[caseIndex];
+            code = currentCase.Item3;  // Lấy mã mặc định từ gốc
+            description = currentCase.Item4;  // Lấy mô tả mặc định từ gốc
+        }
+        else
+        {
+            // Nếu không có cases, hiển thị thông báo mặc định
+            code = "No Case Data";
+            description = "No Description Available";
+        }
 
         // Hiển thị "code.description" khi không có mạng
         if (offlineCaseText != null)

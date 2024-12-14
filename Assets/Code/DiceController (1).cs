@@ -39,6 +39,7 @@ public class DiceController : MonoBehaviour
             {
                 if (checkCase == dice)
                 {
+					Debug.Log("Vao Case Random");
                     isPauseCase = true;
                     break;
                 }

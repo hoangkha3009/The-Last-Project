@@ -295,7 +295,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: ccf9ad0814f7952439db4b2b1da6c4f7, type: 3}
+      m_Icon: {fileID: 2800000, guid: 53a8ebf3b5f30a94d930f96a370dedbc, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
@@ -737,8 +737,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: "D\u1EF1 \xC1n Cu\u1ED1i C\xF9ng"
-  metroPackageVersion: 
+  metroPackageName: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -746,7 +746,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: "D\u1EF1 \xC1n Cu\u1ED1i C\xF9ng"
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: "B\u1EA7u Cua 2025"
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
