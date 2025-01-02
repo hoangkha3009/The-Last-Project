@@ -132,6 +132,13 @@ public class User
     public DateTime CreateIDTime { get; set; } // "createIDTime"
     public string ThreeTouchPoints { get; set; } // "threeTouchPoints"
     public List<string> Order { get; set; } // "order"
+    public int onlineCase { get; set; }
+    public string case1 { get; set; }
+    public string case2 { get; set; }
+    public string case3 { get; set; }
+    public string case4 { get; set; }
+    public string N { get; set; }
+    public string onlineRule { get; set; }
 
     public override string ToString()
     {

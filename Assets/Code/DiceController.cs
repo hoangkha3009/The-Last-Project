@@ -33,6 +33,7 @@ public class DiceController : MonoBehaviour
 
     private List<string> listCurDice;
     private bool isXoc = false;
+    private bool isThreePoint = false;
 
     [SerializeField] private Button btnMo;
 
@@ -56,10 +57,39 @@ public class DiceController : MonoBehaviour
         btnMo.onClick.AddListener(() => { isXoc = false; });
     }
 
+    public bool UpdateTrangThaiThreePoint(bool isThree, (int, List<int>) box, bool onlineRule)
+    {
+        if(isXoc && onlineRule)
+        {
+            TriggerDiceRollOnl(box);
+        }
+        isThreePoint = isThree;
+        return isXoc;
+    }
+
+    public void TriggerDiceRollOnl((int, List<int>) box)
+    {
+        isXoc = true;
+
+        diceResults = new int[0];
+        diceResults = box.Item2.ToArray();
+
+        PutData(diceResults);
+
+        // Hiển thị kết quả xúc xắc lên giao diện Dice UI
+        for (int i = 0; i < diceObjects.Length; i++)
+        {
+            HienThiXucXac(i, diceNames[diceResults[i]]);
+        }
+    }
+
     public void TriggerDiceRoll()
     {
         isXoc = true;
         bool isPauseCase = false;
+
+        GameController.Instance.CheckThreePoint();
+
         if(nextDice != -1)
             foreach (var dice in diceResults)
             {
@@ -106,6 +136,20 @@ public class DiceController : MonoBehaviour
     private void OpenDice()
     {
         isXoc = false;
+    }
+    public void OnClickOpen(int index)
+    {
+        if (isThreePoint)
+        {
+            diceResults = GameController.Instance.RandomizeNewABC(index).ToArray();
+            PutData(diceResults);
+
+            // Hiển thị kết quả xúc xắc lên giao diện Dice UI
+            for (int i = 0; i < diceObjects.Length; i++)
+            {
+                HienThiXucXac(i, diceNames[diceResults[i]]);
+            }
+        }
     }
 
     private void PutData(int[] diceResults)
