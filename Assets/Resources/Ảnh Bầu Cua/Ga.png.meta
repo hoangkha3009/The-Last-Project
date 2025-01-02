@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bd7a4fcfc2dde2c4d95ecaf1a75da89c
+guid: 98963ae0839d4f246a5b75b542ada615
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 176160234808770350
-    second: Ga_0
+      213: 1308976704909806270
+    second: XucXac4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,17 +122,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ga_0
+      name: XucXac4_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 202
-        height: 229
+        x: 179
+        y: 171
+        width: 253
+        height: 287
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2f735bdcc8d17200800000000000000
-      internalID: 176160234808770350
+      spriteID: eba096bb06b6a2210800000000000000
+      internalID: 1308976704909806270
       vertices: []
       indices: 
       edges: []
@@ -161,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ga_0: 176160234808770350
+      XucXac4_0: 1308976704909806270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d3cb8c94152016441a255f52df38dba6
+guid: 2476817e5a5dc21439667823137f9efd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9202060142997513903
-    second: G_0
+      213: -7984583428761877472
+    second: Anh5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,17 +122,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: G_0
+      name: Anh5_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 182
-        height: 182
+        x: 101
+        y: 98
+        width: 318
+        height: 304
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa6a52902f844bf70800000000000000
-      internalID: 9202060142997513903
+      spriteID: 0248d29fcaf013190800000000000000
+      internalID: -7984583428761877472
       vertices: []
       indices: 
       edges: []
@@ -160,8 +173,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      G_0: 9202060142997513903
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

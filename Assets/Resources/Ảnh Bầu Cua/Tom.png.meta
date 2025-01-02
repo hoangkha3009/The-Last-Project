@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 919ce89f76c71cb4aa38a56921e3f5e2
+guid: fd097851fda3b5b45b770e347c2350c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1796865340239105866
-    second: Tom_0
+      213: 4541558494936143058
+    second: XucXac2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,17 +122,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tom_0
+      name: XucXac2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 202
-        height: 230
+        x: 179
+        y: 171
+        width: 253
+        height: 287
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b036d54e704017e0800000000000000
-      internalID: -1796865340239105866
+      spriteID: 2d49351936bd60f30800000000000000
+      internalID: 4541558494936143058
       vertices: []
       indices: 
       edges: []
@@ -161,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tom_0: -1796865340239105866
+      XucXac2_0: 4541558494936143058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

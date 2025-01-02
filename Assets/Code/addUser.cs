@@ -18,7 +18,7 @@ public class UserManager : MonoBehaviour
         else
         {
             Debug.Log("Chưa có UserID trong PrefPlayer. Tiến hành tạo mới...");
-            CreateNewUser();
+            StartCoroutine(CreateNewUser());
         }
     }
 
@@ -38,20 +38,17 @@ public class UserManager : MonoBehaviour
                "}";
     }
 
-    private void CreateNewUser()
+    private IEnumerator CreateNewUser()
     {
         string jsonPayload = CreatePayload();
         Debug.Log($"Payload JSON gửi lên: {jsonPayload}");
-        StartCoroutine(PostNewUser(jsonPayload));
-    }
-
-    private IEnumerator PostNewUser(string jsonPayload)
-    {
+        
         UnityWebRequest request = new UnityWebRequest(ApiAddUserUrl, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonPayload);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("X-API-KEY", "f47ac10b-58cc-4372-a567-0e02b2c3d479"); // Thêm API key vào header
 
         Debug.Log("Đang gửi yêu cầu tạo User...");
         yield return request.SendWebRequest();
@@ -88,29 +85,32 @@ public class UserManager : MonoBehaviour
         {
             Debug.LogError($"Lỗi khi gọi API: {request.error}");
             Debug.Log($"HTTP Status Code: {request.responseCode}");
-            Debug.Log($"Phản hồi từ server: {request.downloadHandler.text}");
+            if (request.downloadHandler != null)
+            {
+                Debug.Log($"Phản hồi từ server: {request.downloadHandler.text}");
+            }
         }
     }
-}
 
-[System.Serializable]
-public class UserResponse
-{
-    public bool success;
-    public NewUser newUser;
-}
+    [System.Serializable]
+    public class UserResponse
+    {
+        public bool success;
+        public NewUser newUser;
+    }
 
-[System.Serializable]
-public class NewUser
-{
-    public string id;
-    public string[] currentABC;
-    public string[] newABC;
-    public string changeABC;
-    public string logTime;
-    public string createIDTime;
-    public string prefPlayer;
-    public string threeTouchPoints;
-    public string statusPrefPlayer;
-    public string[] order;
+    [System.Serializable]
+    public class NewUser
+    {
+        public string id;
+        public string[] currentABC;
+        public string[] newABC;
+        public string changeABC;
+        public string logTime;
+        public string createIDTime;
+        public string prefPlayer;
+        public string threeTouchPoints;
+        public string statusPrefPlayer;
+        public string[] order;
+    }
 }
