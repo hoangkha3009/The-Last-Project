@@ -1,6 +1,22 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
+
+public class RequestBodyDiceData
+{
+    public List<string> NewABC = new List<string>();
+}
+
+public class ResponseBodyUser
+{
+    public bool Success { get; set; }
+    public User User { get; set; }
+}
 
 public class DiceController : MonoBehaviour
 {
@@ -14,6 +30,12 @@ public class DiceController : MonoBehaviour
 
     int[] diceResults = new int[3];
     int checkCase = 2;
+
+    private List<string> listCurDice;
+    private bool isXoc = false;
+
+    [SerializeField] private Button btnMo;
+
     void Start()
     {
         // Load các case từ CaseData
@@ -29,10 +51,14 @@ public class DiceController : MonoBehaviour
 
         // Lấy danh sách tên biểu tượng cho case hiện tại
         diceNames = CaseData.Cases[currentCase].Item1;
+        listCurDice = new List<string>();
+
+        btnMo.onClick.AddListener(() => { isXoc = false; });
     }
 
     public void TriggerDiceRoll()
-{
+    {
+        isXoc = true;
         bool isPauseCase = false;
         if(nextDice != -1)
             foreach (var dice in diceResults)
@@ -44,31 +70,74 @@ public class DiceController : MonoBehaviour
                     break;
                 }
             }
-    // Đặt giá trị xúc xắc ngẫu nhiên
-    for (int i = 0; i < 3; i++)
-    {
-        diceResults[i] = UnityEngine.Random.Range(0, 6);
-    }
-    // Gán Next Dice vào một trong các xúc xắc (nếu có)
-    if (nextDice != -1 && !isPauseCase)
-    {
-        int guaranteedIndex = UnityEngine.Random.Range(0, 3);
-        diceResults[guaranteedIndex] = nextDice;
-    } 
+        // Đặt giá trị xúc xắc ngẫu nhiên
+        for (int i = 0; i < 3; i++)
+        {
+            diceResults[i] = UnityEngine.Random.Range(0, 6);
+        }
+        // Gán Next Dice vào một trong các xúc xắc (nếu có)
+        if (nextDice != -1 && !isPauseCase)
+        {
+            int guaranteedIndex = UnityEngine.Random.Range(0, 3);
+            diceResults[guaranteedIndex] = nextDice;
+        }
 
-    // Hiển thị kết quả xúc xắc lên giao diện Dice UI
-    for (int i = 0; i < diceObjects.Length; i++)
+        PutData(diceResults);
+
+        // Hiển thị kết quả xúc xắc lên giao diện Dice UI
+        for (int i = 0; i < diceObjects.Length; i++)
+        {
+            HienThiXucXac(i, diceNames[diceResults[i]]);
+        }
+
+        // Tính toán Next Dice mới
+        CalculateNextDice(diceResults);
+    }
+
+    private void HienThiXucXac(int index, string nameXucXac)
     {
-        Image diceImage = diceObjects[i].GetComponent<Image>();
+        Image diceImage = diceObjects[index].GetComponent<Image>();
         if (diceImage != null)
         {
-            diceImage.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[i]]}");
+            diceImage.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{nameXucXac}");
         }
     }
 
-    // Tính toán Next Dice mới
-    CalculateNextDice(diceResults);
-}
+    private void OpenDice()
+    {
+        isXoc = false;
+    }
+
+    private void PutData(int[] diceResults)
+    {
+        RequestBodyDiceData requestBodyDiceData = new RequestBodyDiceData();
+        foreach (var dice in diceResults)
+        {
+            requestBodyDiceData.NewABC.Add(diceNames[dice]);
+        }
+        listCurDice = requestBodyDiceData.NewABC;
+        APIHander.Instance.SubmitData(requestBodyDiceData, APIHander.API_PATH_POST_DICE_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"), APIHander.TypeMothod.POST, () => {
+            CheckData();
+        });
+    }
+
+    private async void CheckData(UnityAction action = null)
+    {
+        ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
+        if(responseBodyUser == null)
+            return;
+
+        action?.Invoke();
+        listCurDice = responseBodyUser.User.CurrentABC;
+        if (isXoc) 
+        {
+            for (int i = 0; i < diceObjects.Length; i++)
+            {
+                HienThiXucXac(i, listCurDice[i]);
+            }
+            CheckData();
+        }
+    }
 
     public void UpdateImage()
     {
