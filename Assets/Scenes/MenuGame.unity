@@ -3234,6 +3234,7 @@ MonoBehaviour:
   resultImage2: {fileID: 1217962197}
   resultImage3: {fileID: 1243745103}
   btnMo: {fileID: 540416924}
+  btnXoc: {fileID: 976017600}
 --- !u!114 &935295257
 MonoBehaviour:
   m_ObjectHideFlags: 0

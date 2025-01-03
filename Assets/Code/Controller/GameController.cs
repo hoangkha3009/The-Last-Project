@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using UnityEngine;
 using UnityEngine.Events;
@@ -106,7 +107,7 @@ public class GameController : MonoBehaviour
         //UpdateNewABC(user.ID, newABC);
     }
 
-    public List<int> RandomizeNewABC(int indexButton = -1)
+    public List<int> RandomizeNewABC(int indexButton = -1, int[] diceResults = null)
     {
         List<int> newABC = new List<int>();
 
@@ -130,15 +131,13 @@ public class GameController : MonoBehaviour
         {
             List<int> restrictedNumbers = GetRestrictedNumbers(user, indexButton);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < diceResults.Length; i++)
             {
-                int randomValue;
-                do
+                while (restrictedNumbers.Contains(diceResults[i]))
                 {
-                    randomValue = Random.Range(0, 6);
-                } while (restrictedNumbers.Contains(randomValue));
-
-                newABC.Add(randomValue);
+                    diceResults[i] = Random.Range(0, 6);
+                }
+                newABC.Add(diceResults[i]);
             }
         }
 

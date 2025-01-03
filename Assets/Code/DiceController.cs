@@ -39,12 +39,13 @@ public class DiceController : MonoBehaviour
     private bool isThreePoint = false;
 
     [SerializeField] private Button btnMo;
+    [SerializeField] private Button btnXoc;
 
-    void Start()
+    async void Start()
     {
         // Load các case từ CaseData
         CaseData.LoadCases();
-
+        btnXoc.interactable = false;
         // Thiết lập case hiện tại
         currentCase = DateTime.Now.Hour % 24; // Chọn case dựa trên giờ hiện tại
         if (!CaseData.Cases.TryGetValue(currentCase, out var caseData))
@@ -58,6 +59,24 @@ public class DiceController : MonoBehaviour
         listCurDice = new List<string>();
 
         btnMo.onClick.AddListener(() => { isXoc = false; });
+
+        ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
+        if (responseBodyUser != null)
+        {
+            diceNames = responseBodyUser.User.Order.ToArray(); 
+            for (int i = 0; i < diceObjects.Length; i++)
+            {
+                HienThiXucXac(i, responseBodyUser.User.CurrentABC[i]);
+            }
+            resultImage1.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{responseBodyUser.User.CurrentABC[0]}");
+            resultImage2.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{responseBodyUser.User.CurrentABC[1]}");
+            resultImage3.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{responseBodyUser.User.CurrentABC[2]}");
+        } else
+        {
+            Debug.Log("off");
+        }
+
+        btnXoc.interactable = true;
     }
 
     public bool UpdateTrangThaiThreePoint(bool isThree, (int, List<int>) box, bool onlineRule, List<string> order)
@@ -150,7 +169,7 @@ public class DiceController : MonoBehaviour
         if (isThreePoint)
         {
             Debug.LogError("TTTT");
-            diceResults = GameController.Instance.RandomizeNewABC(index).ToArray();
+            diceResults = GameController.Instance.RandomizeNewABC(index, diceResults).ToArray();
             PutData(diceResults);
 
             // Hiển thị kết quả xúc xắc lên giao diện Dice UI
