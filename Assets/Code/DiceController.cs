@@ -1,10 +1,13 @@
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class RequestBodyDiceData
@@ -33,14 +36,16 @@ public class DiceController : MonoBehaviour
 
     private List<string> listCurDice;
     private bool isXoc = false;
+    private bool isThreePoint = false;
 
     [SerializeField] private Button btnMo;
+    [SerializeField] private Button btnXoc;
 
-    void Start()
+    async void Start()
     {
         // Load các case từ CaseData
         CaseData.LoadCases();
-
+        btnXoc.interactable = false;
         // Thiết lập case hiện tại
         currentCase = DateTime.Now.Hour % 24; // Chọn case dựa trên giờ hiện tại
         if (!CaseData.Cases.TryGetValue(currentCase, out var caseData))
@@ -54,12 +59,58 @@ public class DiceController : MonoBehaviour
         listCurDice = new List<string>();
 
         btnMo.onClick.AddListener(() => { isXoc = false; });
+
+        ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
+        if (responseBodyUser != null)
+        {
+            diceNames = responseBodyUser.User.Order.ToArray(); 
+            for (int i = 0; i < diceObjects.Length; i++)
+            {
+                HienThiXucXac(i, responseBodyUser.User.CurrentABC[i]);
+            }
+            resultImage1.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{responseBodyUser.User.CurrentABC[0]}");
+            resultImage2.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{responseBodyUser.User.CurrentABC[1]}");
+            resultImage3.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{responseBodyUser.User.CurrentABC[2]}");
+        } else
+        {
+            Debug.Log("off");
+        }
+
+        btnXoc.interactable = true;
+    }
+
+    public bool UpdateTrangThaiThreePoint(bool isThree, (int, List<int>) box, bool onlineRule, List<string> order)
+    {
+        if(isXoc && onlineRule)
+        {
+            diceNames = order.ToArray();
+            TriggerDiceRollOnl(box);
+        }
+        isThreePoint = isThree;
+        return isXoc;
+    }
+
+    public void TriggerDiceRollOnl((int, List<int>) box)
+    {
+        isXoc = true;
+
+        diceResults = box.Item2.ToArray();
+        Debug.LogError("vào case onl");
+        PutData(diceResults);
+
+        // Hiển thị kết quả xúc xắc lên giao diện Dice UI
+        for (int i = 0; i < diceObjects.Length; i++)
+        {
+            HienThiXucXac(i, diceNames[diceResults[i]]);
+        }
     }
 
     public void TriggerDiceRoll()
     {
+        GameController.Instance.isFirstDiceOnl = false;
         isXoc = true;
         bool isPauseCase = false;
+
         if(nextDice != -1)
             foreach (var dice in diceResults)
             {
@@ -81,8 +132,9 @@ public class DiceController : MonoBehaviour
             int guaranteedIndex = UnityEngine.Random.Range(0, 3);
             diceResults[guaranteedIndex] = nextDice;
         }
+        GameController.Instance.indexCheck++;
+        int indexTest = GameController.Instance.indexCheck;
 
-        PutData(diceResults);
 
         // Hiển thị kết quả xúc xắc lên giao diện Dice UI
         for (int i = 0; i < diceObjects.Length; i++)
@@ -92,6 +144,10 @@ public class DiceController : MonoBehaviour
 
         // Tính toán Next Dice mới
         CalculateNextDice(diceResults);
+        GameController.Instance.CheckThreePoint(indexTest, () =>
+        {
+            PutData(diceResults);
+        });
     }
 
     private void HienThiXucXac(int index, string nameXucXac)
@@ -107,8 +163,24 @@ public class DiceController : MonoBehaviour
     {
         isXoc = false;
     }
+    public void OnClickOpen(int index)
+    {
+        isXoc = false;
+        if (isThreePoint)
+        {
+            Debug.LogError("TTTT");
+            diceResults = GameController.Instance.RandomizeNewABC(index, diceResults).ToArray();
+            PutData(diceResults);
 
-    private void PutData(int[] diceResults)
+            // Hiển thị kết quả xúc xắc lên giao diện Dice UI
+            for (int i = 0; i < diceObjects.Length; i++)
+            {
+                HienThiXucXac(i, diceNames[diceResults[i]]);
+            }
+        }
+    }
+
+    private void PutData(int[] diceResults, UnityAction action = null)
     {
         RequestBodyDiceData requestBodyDiceData = new RequestBodyDiceData();
         foreach (var dice in diceResults)
@@ -118,6 +190,7 @@ public class DiceController : MonoBehaviour
         listCurDice = requestBodyDiceData.NewABC;
         APIHander.Instance.SubmitData(requestBodyDiceData, APIHander.API_PATH_POST_DICE_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"), APIHander.TypeMothod.POST, () => {
             CheckData();
+            action?.Invoke();
         });
     }
 
@@ -128,12 +201,14 @@ public class DiceController : MonoBehaviour
             return;
 
         action?.Invoke();
-        listCurDice = responseBodyUser.User.CurrentABC;
-        if (isXoc) 
+        if (isXoc)
         {
+            diceResults[0] = GameController.Instance.Mapping[responseBodyUser.User.CurrentABC[0]];
+            diceResults[1] = GameController.Instance.Mapping[responseBodyUser.User.CurrentABC[1]];
+            diceResults[2] = GameController.Instance.Mapping[responseBodyUser.User.CurrentABC[2]];
             for (int i = 0; i < diceObjects.Length; i++)
             {
-                HienThiXucXac(i, listCurDice[i]);
+                HienThiXucXac(i, diceNames[diceResults[i]]);
             }
             CheckData();
         }
