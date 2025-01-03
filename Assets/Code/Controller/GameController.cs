@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class GameController : MonoBehaviour
@@ -9,12 +10,15 @@ public class GameController : MonoBehaviour
     public static GameController Instance;
     [SerializeField] private DiceController diceController;
     private bool isCheckThreePoint = false;
-    private static readonly Dictionary<string, int> Mapping = new Dictionary<string, int>();
+    public Dictionary<string, int> Mapping = new Dictionary<string, int>();
 
     private User user = null;
     private int nextDice = 0;
 
     [SerializeField] private GameObject grBtnThree;
+
+    public bool isFirstDiceOnl = false;
+    public int indexCheck = 0;
 
     private void Awake()
     {
@@ -22,25 +26,33 @@ public class GameController : MonoBehaviour
             Instance = this;
     }
 
-    public async void CheckThreePoint()
+    public async void CheckThreePoint(int indexCheck = 0, UnityAction action = null)
     {
         ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
-        if (responseBodyUser != null )
+        if (responseBodyUser != null && this.indexCheck == indexCheck)
         {
-            for (int i = 0; i < responseBodyUser.User.Order.Count; i++)
-                Mapping.Add(responseBodyUser.User.Order[i], i);
-
-            bool onlineRule = responseBodyUser.User.onlineRule.ToLower() == "yes";
-            grBtnThree.SetActive(onlineRule);
-            if (responseBodyUser.User.ThreeTouchPoints.ToLower() == "yes")
+            if(!isFirstDiceOnl)
             {
-                isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(true, ProcessData(responseBodyUser.User), onlineRule);
+                isFirstDiceOnl = true;
+                Mapping.Clear();
+                for (int i = 0; i < responseBodyUser.User.Order.Count; i++)
+                    Mapping.Add(responseBodyUser.User.Order[i], i);
+
+                bool onlineRule = responseBodyUser.User.onlineRule.ToLower() == "yes";
+                grBtnThree.SetActive(responseBodyUser.User.ThreeTouchPoints.ToLower() == "yes");
+                if (responseBodyUser.User.ThreeTouchPoints.ToLower() == "yes")
+                {
+                    isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(true, ProcessData(responseBodyUser.User), onlineRule, user.Order);
+                }
+                else
+                    isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(false, ProcessData(responseBodyUser.User), onlineRule, user.Order);
+                action?.Invoke();
             }
-            else
-                isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(false, ProcessData(responseBodyUser.User), onlineRule);
         }
         if (isCheckThreePoint)
+        {
             CheckThreePoint();
+        }
     }
 
     private int CalculateNextDice(User user)
@@ -48,9 +60,14 @@ public class GameController : MonoBehaviour
         int a = Mapping[user.CurrentABC[0]];
         int b = Mapping[user.CurrentABC[1]];
         int c = Mapping[user.CurrentABC[2]];
-        int n = int.Parse(user.N);
+        int n = user.N;
         int result;
 
+        string str = "";
+        foreach (var item in user.Order)
+            str += item + "\t";
+        Debug.LogError(str);
+        Debug.LogError(user.onlineCase + " - " + a + " - " + b + " - " + c);
         switch (user.onlineCase)
         {
             case 1:
@@ -75,7 +92,7 @@ public class GameController : MonoBehaviour
         {
             result %= 6;
         }
-
+        Debug.LogError(result);
         return result;
     }
 
@@ -131,7 +148,7 @@ public class GameController : MonoBehaviour
     private List<int> GetRestrictedNumbers(User user, int indexButton)
     {
         List<int> restricted = new List<int>();
-
+        Debug.Log("Button " + indexButton);
         int count = user.Order.Count / 3;
         int start = indexButton * count;
         int end = start + count;

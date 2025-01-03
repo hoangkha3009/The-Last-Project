@@ -18,7 +18,7 @@ public class APIHander : MonoBehaviour
     public static string API_PATH_POST_DICE_DATA_BY_ID_USER = "https://bautomcua-a8b183da803d.herokuapp.com/api/config/updateABCUser/ID/";
     public static string API_PATH_PATCH_THREE_TOUCH_POINT_BY_ID_USER = "https://bautomcua-a8b183da803d.herokuapp.com/api/config/ThreeTouchPoints/id/";
     public static string API_PATH_PATCH_THREE_TOUCH_POINT = "https://bautomcua-a8b183da803d.herokuapp.com/api/config/ThreeTouchPoints/";
-    private const string API_KEY = "f47ac10b-58cc-4372-a567-0e02b2c3d479";
+    public const string API_KEY = "f47ac10b-58cc-4372-a567-0e02b2c3d479";
     public static APIHander Instance;
 
     public enum TypeMothod
@@ -137,7 +137,7 @@ public class User
     public string case2 { get; set; }
     public string case3 { get; set; }
     public string case4 { get; set; }
-    public string N { get; set; }
+    public int N { get; set; }
     public string onlineRule { get; set; }
 
     public override string ToString()
