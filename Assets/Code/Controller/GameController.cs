@@ -35,18 +35,23 @@ public class GameController : MonoBehaviour
             if(!isFirstDiceOnl)
             {
                 isFirstDiceOnl = true;
-                Mapping.Clear();
-                for (int i = 0; i < responseBodyUser.User.Order.Count; i++)
-                    Mapping.Add(responseBodyUser.User.Order[i], i);
 
                 bool onlineRule = responseBodyUser.User.onlineRule.ToLower() == "yes";
+                if(onlineRule)
+                {
+                    Mapping.Clear();
+                    for (int i = 0; i < responseBodyUser.User.Order.Count; i++)
+                        Mapping.Add(responseBodyUser.User.Order[i], i);
+                    diceController.UpdateDiceName(Mapping);
+                }
+
                 grBtnThree.SetActive(responseBodyUser.User.ThreeTouchPoints.ToLower() == "yes");
                 if (responseBodyUser.User.ThreeTouchPoints.ToLower() == "yes")
                 {
-                    isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(true, ProcessData(responseBodyUser.User), onlineRule, user.Order);
+                    isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(true, ProcessData(responseBodyUser.User), onlineRule, responseBodyUser.User.Order);
                 }
                 else
-                    isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(false, ProcessData(responseBodyUser.User), onlineRule, user.Order);
+                    isCheckThreePoint = diceController.UpdateTrangThaiThreePoint(false, ProcessData(responseBodyUser.User), onlineRule, responseBodyUser.User.Order); 
                 action?.Invoke();
             }
         }
@@ -78,10 +83,10 @@ public class GameController : MonoBehaviour
                 result = a * 2 + b + c + n;
                 break;
             case 3:
-                result = b * 2 + c + n;
+                result = a + c + n;
                 break;
             case 4:
-                result = c * 2 + a + n;
+                result = a + n;
                 break;
             default:
                 result = 0;
@@ -99,6 +104,8 @@ public class GameController : MonoBehaviour
 
     public (int, List<int>) ProcessData(User user)
     {
+        //if (user.onlineRule.ToLower() == "yes")
+        //    return (-1, null);
         nextDice = CalculateNextDice(user);
         this.user = user;
         var newABC = RandomizeNewABC();
@@ -129,8 +136,13 @@ public class GameController : MonoBehaviour
         }
         else
         {
+            string strMap = "onl: ";
+            foreach(var item in Mapping)
+            {
+                strMap += item.Key + "\t";
+            }
+            Debug.LogError(strMap);
             List<int> restrictedNumbers = GetRestrictedNumbers(user, indexButton);
-
             for (int i = 0; i < diceResults.Length; i++)
             {
                 while (restrictedNumbers.Contains(diceResults[i]))
@@ -148,14 +160,14 @@ public class GameController : MonoBehaviour
     {
         List<int> restricted = new List<int>();
         Debug.Log("Button " + indexButton);
-        int count = user.Order.Count / 3;
+        int count = 2;
         int start = indexButton * count;
         int end = start + count;
 
-        for (int i = start; i < end; i++)
-        {
-            restricted.Add(Mapping[user.Order[i]]);
-        }
+            for (int i = start; i < end; i++)
+            {
+                restricted.Add(i);
+            }
 
         return restricted;
     }
