@@ -56,6 +56,10 @@ public class DiceController : MonoBehaviour
 
         // Lấy danh sách tên biểu tượng cho case hiện tại
         diceNames = CaseData.Cases[currentCase].Item1;
+
+        GameController.Instance.Mapping.Clear();
+        for (int i = 0; i < CaseData.Cases[currentCase].Item1.Length; i++)
+            GameController.Instance.Mapping.Add(CaseData.Cases[currentCase].Item1[i], i);
         listCurDice = new List<string>();
 
         btnMo.onClick.AddListener(() => { isXoc = false; });
@@ -104,9 +108,25 @@ public class DiceController : MonoBehaviour
             HienThiXucXac(i, diceNames[diceResults[i]]);
         }
     }
-
+    public void UpdateDiceName(Dictionary<string, int> Mapping)
+    {
+        List<string> names = new List<string>();
+        foreach(var item in Mapping)
+            names.Add(item.Key);
+        diceNames = names.ToArray();
+    }
     public void TriggerDiceRoll()
     {
+        currentCase = DateTime.Now.Hour % 24; // Chọn case dựa trên giờ hiện tại
+        if (!CaseData.Cases.TryGetValue(currentCase, out var caseData))
+        {
+            Debug.LogError("Case không tồn tại. Đặt về case mặc định (0).");
+            currentCase = 0; // Đặt case mặc định
+        }
+        GameController.Instance.Mapping.Clear();
+        diceNames = CaseData.Cases[currentCase].Item1;
+        for (int i = 0; i < CaseData.Cases[currentCase].Item1.Length; i++)
+            GameController.Instance.Mapping.Add(CaseData.Cases[currentCase].Item1[i], i);
         GameController.Instance.isFirstDiceOnl = false;
         isXoc = true;
         bool isPauseCase = false;
@@ -116,7 +136,7 @@ public class DiceController : MonoBehaviour
             {
                 if (checkCase == dice)
                 {
-					Debug.Log("Vao Case Random");
+					Debug.LogError("Vao Case Random");
                     isPauseCase = true;
                     break;
                 }
@@ -168,7 +188,7 @@ public class DiceController : MonoBehaviour
         isXoc = false;
         if (isThreePoint)
         {
-            Debug.LogError("TTTT");
+            Debug.LogError("TTTT " + index + " - " + diceResults[0] + " - " + diceResults[1] + " - " + diceResults[2]);
             diceResults = GameController.Instance.RandomizeNewABC(index, diceResults).ToArray();
             PutData(diceResults);
 
@@ -234,13 +254,12 @@ public class DiceController : MonoBehaviour
     {
         // Lấy công thức tính toán Next_dice từ case hiện tại
         var calculateNextDice = CaseData.Cases[currentCase].Item2;
-
         // Tính giá trị Next_dice
         nextDice = calculateNextDice(diceResults[0], diceResults[1], diceResults[2]);
 
         // Hiển thị công thức tính toán Next_dice
         string formulaDescription = CaseData.GetFormulaDescription(currentCase, diceResults[0], diceResults[1], diceResults[2]);
-        Debug.Log($"Công thức sử dụng cho Case {currentCase}: {formulaDescription}");
-        Debug.Log($"Next Dice tiếp theo: {nextDice} ({diceNames[nextDice]})");
+        Debug.LogError($"Công thức sử dụng cho Case {currentCase}: {formulaDescription}");
+        Debug.LogError($"Next Dice tiếp theo: {nextDice} ({diceNames[nextDice]})");
     }
 }
