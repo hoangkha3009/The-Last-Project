@@ -797,7 +797,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.7
+  - time: 1.9166666
     functionName: UpdateImage
     data: 
     objectReferenceParameter: {fileID: 0}
