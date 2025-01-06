@@ -84,7 +84,7 @@ public class DisplayCaseOffline : MonoBehaviour
             if (PlayerPrefs.HasKey("PrefPlayerID"))
             {
                 string userId = PlayerPrefs.GetString("PrefPlayerID");
-                Debug.Log($"UserID đã tồn tại trong PrefPlayer: {userId}");
+                //Debug.Log($"UserID đã tồn tại trong PrefPlayer: {userId}");
                 code = userId;  // Hiển thị Player ID
             }
             else

@@ -21,6 +21,8 @@ public class APIHander : MonoBehaviour
     public const string API_KEY = "f47ac10b-58cc-4372-a567-0e02b2c3d479";
     public static APIHander Instance;
 
+    public bool isNetwork = true;
+
     public enum TypeMothod
     {
         GET,
@@ -49,16 +51,15 @@ public class APIHander : MonoBehaviour
         await request.SendWebRequest();
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.LogError("Error: " + request.error);
+            isNetwork = false;
+            return default(T);
         }
         else
         {
-            // Lấy dữ liệu từ server
-            Debug.Log("Response: " + request.downloadHandler.text);
+            isNetwork = true;
             T res = JsonConvert.DeserializeObject<T>(request.downloadHandler.text);
             return res;
         }
-        return default(T);
     }
 
     public async void SubmitData<T>(T jsonData, string stringPath, TypeMothod typeMothod, UnityAction action = null)
@@ -74,16 +75,21 @@ public class APIHander : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
-            Debug.LogError("Error: " + request.downloadHandler.text);
+            isNetwork = false;
         }
         else
         {
-            Debug.Log("Response: " + request.downloadHandler.text);
+            isNetwork = true;
             if (action != null)
             {
                 action.Invoke();
             }
         }
+    }
+
+    public async void IsNetworkAvailable()
+    {
+        await APIHander.Instance.GetData<ResponseBodyIDUser>(APIHander.API_PATH_GET_LIST_ID_USER);
     }
 }
 
@@ -148,5 +154,11 @@ public class User
                $"CreateIDTime: {CreateIDTime}, ThreeTouchPoints: {ThreeTouchPoints}, " +
                $"Order: [{string.Join(", ", Order)}]";
     }
+}
+
+public class ResponseBodyIDUser
+{
+    public bool Success { get; set; }
+    public List<User> Users { get; set; }
 }
 //
