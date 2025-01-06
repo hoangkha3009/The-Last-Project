@@ -22,11 +22,8 @@ public class NetworkImageController : MonoBehaviour
 
     private void CheckNetworkStatus()
     {
-        // Kiểm tra xem thiết bị có mạng hay không
-        bool isConnected = Application.internetReachability != NetworkReachability.NotReachable;
-
         // Cập nhật trạng thái hình ảnh
-        if (isConnected)
+        if (APIHander.Instance.isNetwork)
         {
             image1.SetActive(true);
             image2.SetActive(false);
