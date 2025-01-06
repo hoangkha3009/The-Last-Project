@@ -82,7 +82,7 @@ public class AnimationControl : MonoBehaviour
         animator.SetTrigger("ResetAnimation");
 
         // Chuyển trạng thái nút sau khi Animation hoàn tất
-        Invoke(nameof(ResetButtons), 0.1f);
+        //Invoke(nameof(ResetButtons), 0.1f);
 
         Debug.Log("Animation đã tiếp tục và reset về trạng thái ban đầu!");
     }

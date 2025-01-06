@@ -42,7 +42,6 @@ public class APIHander : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        IsNetworkAvailable();
     }
 
     public async Task<T> GetData<T>(string apiPath)
@@ -88,7 +87,7 @@ public class APIHander : MonoBehaviour
         }
     }
 
-    private async void IsNetworkAvailable()
+    public async void IsNetworkAvailable()
     {
         await APIHander.Instance.GetData<ResponseBodyIDUser>(APIHander.API_PATH_GET_LIST_ID_USER);
     }

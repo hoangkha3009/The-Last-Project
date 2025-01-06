@@ -23,6 +23,7 @@ public class NetworkImageController : MonoBehaviour
     private void CheckNetworkStatus()
     {
         // Cập nhật trạng thái hình ảnh
+        APIHander.Instance.IsNetworkAvailable();
         if (APIHander.Instance.isNetwork)
         {
             image1.SetActive(true);
