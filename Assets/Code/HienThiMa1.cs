@@ -49,7 +49,7 @@ public class DisplayCaseOffline : MonoBehaviour
         }
         else
         {
-            Debug.Log("No saved case data found.");
+            Debug.Log("");
         }
     }
 
@@ -64,7 +64,7 @@ public class DisplayCaseOffline : MonoBehaviour
         }
         else
         {
-            code = "No ID";  // Nếu không tìm thấy ID, hiển thị thông báo này
+            code = "";  // Nếu không tìm thấy ID, hiển thị thông báo này
         }
 
         // Lấy idShort (description) từ PlayerPrefs
@@ -74,7 +74,7 @@ public class DisplayCaseOffline : MonoBehaviour
         }
         else
         {
-            description = "No idShort";  // Nếu không tìm thấy idShort, hiển thị thông báo này
+            description = "";  // Nếu không tìm thấy idShort, hiển thị thông báo này
         }
 
         // Kiểm tra kết nối mạng và thay đổi định dạng hiển thị

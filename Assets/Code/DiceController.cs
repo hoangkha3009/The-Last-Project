@@ -32,6 +32,7 @@ public class DiceController : MonoBehaviour
     public Image resultImage3; // UI Image cho Dice 3
 
     int[] diceResults = new int[3];
+    int[] oldDiceResults = {0, 0, 0};
     int checkCase = 2;
 
     private List<string> listCurDice;
@@ -94,14 +95,20 @@ public class DiceController : MonoBehaviour
         return isXoc;
     }
 
+    public void SetOldDiceResults(int a, int b, int c)
+    {
+        oldDiceResults[0] = a;
+        oldDiceResults[1] = b;
+        oldDiceResults[2] = c;
+    }
+
     public void TriggerDiceRollOnl((int, List<int>, int) box, int checkCase = -1)
     {
         isXoc = true;
-
         diceResults = box.Item2.ToArray();
         Debug.LogError("vào case onl");
 
-        foreach (var dice in diceResults)
+        foreach (var dice in oldDiceResults)
         {
             if (box.Item3 == dice)
             {
@@ -250,7 +257,6 @@ public class DiceController : MonoBehaviour
 
     public void UpdateImage()
     {
-
         // Hiển thị kết quả lên các Image UI được chỉ định (Dice1, Dice2, Dice3)
         resultImage1.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[0]]}");
         resultImage2.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[1]]}");

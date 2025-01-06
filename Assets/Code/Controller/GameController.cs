@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour
         int a = Mapping[user.CurrentABC[0]];
         int b = Mapping[user.CurrentABC[1]];
         int c = Mapping[user.CurrentABC[2]];
+        diceController.SetOldDiceResults(a, b, c);
         int n = user.N;
         int result;
 
