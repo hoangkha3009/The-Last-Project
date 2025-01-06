@@ -32,6 +32,7 @@ public class DiceController : MonoBehaviour
     public Image resultImage3; // UI Image cho Dice 3
 
     int[] diceResults = new int[3];
+    int[] oldDiceResults = {0, 0, 0};
     int checkCase = 2;
 
     private List<string> listCurDice;
@@ -65,7 +66,7 @@ public class DiceController : MonoBehaviour
         btnMo.onClick.AddListener(() => { isXoc = false; });
 
         ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
-        if (responseBodyUser != null)
+        if (responseBodyUser.User != null)
         {
             diceNames = responseBodyUser.User.Order.ToArray(); 
             for (int i = 0; i < diceObjects.Length; i++)
@@ -83,7 +84,7 @@ public class DiceController : MonoBehaviour
         btnXoc.interactable = true;
     }
 
-    public bool UpdateTrangThaiThreePoint(bool isThree, (int, List<int>) box, bool onlineRule, List<string> order)
+    public bool UpdateTrangThaiThreePoint(bool isThree, (int, List<int>, int) box, bool onlineRule, List<string> order)
     {
         if(isXoc && onlineRule)
         {
@@ -94,12 +95,32 @@ public class DiceController : MonoBehaviour
         return isXoc;
     }
 
-    public void TriggerDiceRollOnl((int, List<int>) box)
+    public void SetOldDiceResults(int a, int b, int c)
+    {
+        oldDiceResults[0] = a;
+        oldDiceResults[1] = b;
+        oldDiceResults[2] = c;
+    }
+
+    public void TriggerDiceRollOnl((int, List<int>, int) box, int checkCase = -1)
     {
         isXoc = true;
-
         diceResults = box.Item2.ToArray();
         Debug.LogError("vào case onl");
+
+        foreach (var dice in oldDiceResults)
+        {
+            if (box.Item3 == dice)
+            {
+                Debug.LogError("Vao Case Random Onl");
+                for (int i = 0; i < 3; i++)
+                {
+                    diceResults[i] = UnityEngine.Random.Range(0, 6);
+                }
+                break;
+            }
+        }
+
         PutData(diceResults);
 
         // Hiển thị kết quả xúc xắc lên giao diện Dice UI
@@ -217,7 +238,7 @@ public class DiceController : MonoBehaviour
     private async void CheckData(UnityAction action = null)
     {
         ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
-        if(responseBodyUser == null)
+        if(responseBodyUser.User == null)
             return;
 
         action?.Invoke();
@@ -236,7 +257,6 @@ public class DiceController : MonoBehaviour
 
     public void UpdateImage()
     {
-
         // Hiển thị kết quả lên các Image UI được chỉ định (Dice1, Dice2, Dice3)
         resultImage1.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[0]]}");
         resultImage2.sprite = Resources.Load<Sprite>($"Ảnh Bầu Cua/{diceNames[diceResults[1]]}");
