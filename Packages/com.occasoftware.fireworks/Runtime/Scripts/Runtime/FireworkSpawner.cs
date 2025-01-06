@@ -18,16 +18,17 @@ namespace OccaSoftware.Fireworks.Runtime
         {
             timeTracker = Time.time;
             randomizedRate = spawnRate * Random.Range(1f, 1f);
+            Spawn();
         }
 
         void Update()
         {
-            if (Time.time - timeTracker > randomizedRate)
-            {
-                Spawn();
-                timeTracker = Time.time;
-                randomizedRate = spawnRate * Random.Range(1f, 1f);
-            }
+            //if (Time.time - timeTracker > randomizedRate)
+            //{
+            //    Spawn();
+            //    timeTracker = Time.time;
+            //    randomizedRate = spawnRate * Random.Range(1f, 1f);
+            //}
         }
 
         void Spawn()

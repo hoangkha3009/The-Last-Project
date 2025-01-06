@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 653, y: 0, z: 675, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -142,9 +142,9 @@ TextureImporter:
       name: "H\xECnh N\u1EC1n Game_0"
       rect:
         serializedVersion: 2
-        x: 649
+        x: 650
         y: 0
-        width: 600
+        width: 598
         height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -164,8 +164,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
-    internalID: 0
+    spriteID: 06b48bfb62c3d7e42a7c902722148d70
+    internalID: -1282337122
     vertices: []
     indices: 
     edges: []
