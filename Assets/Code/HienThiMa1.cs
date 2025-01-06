@@ -89,7 +89,7 @@ public class DisplayCaseOffline : MonoBehaviour
             }
             else
             {
-                code = "No Player ID found";  // Nếu không tìm thấy ID, hiển thị thông báo này
+                code = "";  // Nếu không tìm thấy ID, hiển thị thông báo này
             }
 
             // Lấy mô tả từ currentCase

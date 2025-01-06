@@ -65,7 +65,7 @@ public class DiceController : MonoBehaviour
         btnMo.onClick.AddListener(() => { isXoc = false; });
 
         ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
-        if (responseBodyUser != null)
+        if (responseBodyUser.User != null)
         {
             diceNames = responseBodyUser.User.Order.ToArray(); 
             for (int i = 0; i < diceObjects.Length; i++)
@@ -83,7 +83,7 @@ public class DiceController : MonoBehaviour
         btnXoc.interactable = true;
     }
 
-    public bool UpdateTrangThaiThreePoint(bool isThree, (int, List<int>) box, bool onlineRule, List<string> order)
+    public bool UpdateTrangThaiThreePoint(bool isThree, (int, List<int>, int) box, bool onlineRule, List<string> order)
     {
         if(isXoc && onlineRule)
         {
@@ -94,12 +94,26 @@ public class DiceController : MonoBehaviour
         return isXoc;
     }
 
-    public void TriggerDiceRollOnl((int, List<int>) box)
+    public void TriggerDiceRollOnl((int, List<int>, int) box, int checkCase = -1)
     {
         isXoc = true;
 
         diceResults = box.Item2.ToArray();
         Debug.LogError("vào case onl");
+
+        foreach (var dice in diceResults)
+        {
+            if (box.Item3 == dice)
+            {
+                Debug.LogError("Vao Case Random Onl");
+                for (int i = 0; i < 3; i++)
+                {
+                    diceResults[i] = UnityEngine.Random.Range(0, 6);
+                }
+                break;
+            }
+        }
+
         PutData(diceResults);
 
         // Hiển thị kết quả xúc xắc lên giao diện Dice UI
@@ -217,7 +231,7 @@ public class DiceController : MonoBehaviour
     private async void CheckData(UnityAction action = null)
     {
         ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
-        if(responseBodyUser == null)
+        if(responseBodyUser.User == null)
             return;
 
         action?.Invoke();

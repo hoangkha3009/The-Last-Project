@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
     public async void CheckThreePoint(int indexCheck = 0, UnityAction action = null)
     {
         ResponseBodyUser responseBodyUser = await APIHander.Instance.GetData<ResponseBodyUser>(APIHander.API_PATH_GET_DATA_BY_ID_USER + PlayerPrefs.GetString("PrefPlayerID"));
-        if (responseBodyUser != null && this.indexCheck == indexCheck)
+        if (responseBodyUser.User != null && this.indexCheck == indexCheck)
         {
             if(!isFirstDiceOnl)
             {
@@ -102,14 +102,15 @@ public class GameController : MonoBehaviour
         return result;
     }
 
-    public (int, List<int>) ProcessData(User user)
+    public (int, List<int>, int) ProcessData(User user)
     {
         //if (user.onlineRule.ToLower() == "yes")
         //    return (-1, null);
         nextDice = CalculateNextDice(user);
         this.user = user;
         var newABC = RandomizeNewABC();
-        return (nextDice, newABC);
+
+        return (nextDice, newABC, user.randomOder);
         // Send NewABC to the server
         //UpdateNewABC(user.ID, newABC);
     }

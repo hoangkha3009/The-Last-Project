@@ -145,6 +145,7 @@ public class User
     public string case4 { get; set; }
     public int N { get; set; }
     public string onlineRule { get; set; }
+    public int randomOder { get; set; }
 
     public override string ToString()
     {
